@@ -13,9 +13,14 @@ jobs:
   crawl-news:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write  # Cấp quyền write để commit và push
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Set up Python
       uses: actions/setup-python@v4
