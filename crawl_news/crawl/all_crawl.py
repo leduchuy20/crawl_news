@@ -661,6 +661,57 @@ def main():
 if __name__ == "__main__":
     main()
 
+# In[4]:
+
+
+# Kiểm tra kết quả sau khi crawl 137 RSS feeds
+import pandas as pd
+import os
+df = pd.read_csv("rss_feed_articles_v2.csv")
+
+print("=" * 80)
+print("KẾT QUẢ CRAWL VỚI 137 RSS FEEDS")
+print("=" * 80)
+
+print(f"\n📊 TỔNG QUAN:")
+print(f"   - Tổng số bài viết: {len(df):,}")
+print(f"   - Số feeds: 137 (từ 12 nguồn tin)")
+
+print(f"\n📰 PHÂN BỐ THEO NGUỒN (Top 20):")
+source_dist = df['source.name'].value_counts().head(20)
+for source, count in source_dist.items():
+    print(f"   {source:<30} {count:>5,} bài")
+
+print(f"\n📅 PHÂN BỐ THEO NGÀY:")
+df['date'] = pd.to_datetime(df['published_at']).dt.date
+date_dist = df['date'].value_counts().sort_index(ascending=False).head(7)
+for date, count in date_dist.items():
+    print(f"   {date}: {count:>4,} bài")
+
+print(f"\n🏷️ KEYWORDS & CATEGORY:")
+keywords_count = df['keywords'].notna().sum()
+category_count = df['category.primary'].notna().sum()
+print(f"   - Số bài có keywords: {keywords_count:,}/{len(df):,} ({keywords_count/len(df)*100:.1f}%)")
+print(f"   - Số bài có category: {category_count:,}/{len(df):,} ({category_count/len(df)*100:.1f}%)")
+
+print(f"\n📂 TOP 20 CATEGORIES:")
+cat_dist = df['category.primary'].value_counts().head(20)
+for cat, count in cat_dist.items():
+    print(f"   {cat:<25} {count:>4,} bài")
+
+# Tính độ phủ dữ liệu
+avg_content_length = df['content.text'].str.len().mean()
+print(f"\n📝 CHẤT LƯỢNG DỮ LIỆU:")
+print(f"   - Độ dài trung bình content: {avg_content_length:,.0f} ký tự")
+print(f"   - Số bài có content: {df['content.text'].notna().sum():,}/{len(df):,}")
+
+print("\n" + "=" * 80)
+print(f"✅ HOÀN TẤT! File: rss_feed_articles_v2.csv")
+file_size_mb = os.path.getsize('rss_feed_articles_v2.csv') / 1024 / 1024
+print(f"   Dung lượng: {file_size_mb:.2f} MB")
+print(f"   Nguồn tin: 12 tờ báo lớn nhất Việt Nam")
+print("=" * 80)
+
 # # lao dong
 
 # In[ ]:
@@ -2063,3 +2114,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# In[6]:
+
+
+import pandas as pd
+df_tonghop =pd.read_csv("rss_feed_articles_v2.csv")
+df_laodong = pd.read_csv("laodong_html_articles_vi.csv")
+df_znews = pd.read_csv("znews_html_categories_vi.csv")
+df_24h = pd.read_csv("24h_html_categories_vi.csv")
+print(f"  ✅ Tổng bài tonghop: {len(df_tonghop)}")
+print(f"  ✅ Tổng bài laodong: {len(df_laodong)}")
+print(f"  ✅ Tổng bài znews: {len(df_znews)}")
+print(f"  ✅ Tổng bài 24h: {len(df_24h)}")
