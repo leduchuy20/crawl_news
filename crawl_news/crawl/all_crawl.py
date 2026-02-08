@@ -663,7 +663,7 @@ if __name__ == "__main__":
 
 # # lao dong
 
-# In[2]:
+# In[ ]:
 
 
 #!/usr/bin/env python3
@@ -706,7 +706,7 @@ CATEGORY_URLS = [
 ]
 
 # Crawl từ mới -> cũ cho tới khi bài có ngày < END_DATE
-END_DATE = "2026-01-20"  # YYYY-MM-DD - Lấy từ tháng 12/2025 để có nhiều dữ liệu hơn
+END_DATE = "2026-01-15"  # YYYY-MM-DD - Lấy từ tháng 12/2025 để có nhiều dữ liệu hơn
 MAX_PAGES_PER_CATEGORY = 100  # Mỗi category tối đa 100 trang
 
 CSV_PATH = "laodong_html_articles_vi.csv"
@@ -1613,7 +1613,7 @@ if __name__ == "__main__":
 
 # # 24h
 
-# In[4]:
+# In[ ]:
 
 
 #!/usr/bin/env python3
@@ -1654,7 +1654,7 @@ RSS_FEEDS = [
 
 # Crawl từ mới -> cũ cho tới khi bài có ngày < END_DATE (theo giờ VN)
 # Lưu ý: RSS của 24h chỉ cung cấp ~5 ngày data gần nhất
-END_DATE = "2026-01-30"  # YYYY-MM-DD (điều chỉnh phù hợp với RSS limitation)
+END_DATE = "2026-01-15"  # YYYY-MM-DD (điều chỉnh phù hợp với RSS limitation)
 
 CSV_PATH = "24h_html_categories_vi.csv"
 
