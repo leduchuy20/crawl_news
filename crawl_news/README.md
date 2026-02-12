@@ -39,8 +39,7 @@ Dữ liệu tự động cập nhật **mỗi 6 giờ** qua GitHub Actions.
 
 ## 📝 Cấu trúc dữ liệu
 
-```
-Columns:
+``` Columns:
 - id              : Unique identifier (MD5 hash)
 - title           : Tiêu đề bài viết
 - published_at    : Thời gian xuất bản (ISO 8601 UTC)
