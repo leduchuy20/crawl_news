@@ -10,7 +10,7 @@ Dữ liệu tin tức từ các báo lớn Việt Nam, tự động cập nhật
 import pandas as pd
 
 # Base URL
-BASE_URL = "https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/"
+BASE_URL = "https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/"
 
 # Đọc từng file
 df_tonghop = pd.read_csv(BASE_URL + "rss_feed_articles_v2.csv")
@@ -28,10 +28,10 @@ print(f"24h: {len(df_24h):,} bài")
 
 | Nguồn | Link |
 |-------|------|
-| **Tổng hợp RSS** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/rss_feed_articles_v2.csv) |
-| **Lao Động** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/laodong_html_articles_vi.csv) |
-| **ZNews** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/znews_html_categories_vi.csv) |
-| **24h** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/24h_html_categories_vi.csv) |
+| **Tổng hợp RSS** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/rss_feed_articles_v2.csv) |
+| **Lao Động** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/laodong_html_articles_vi.csv) |
+| **ZNews** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/znews_html_categories_vi.csv) |
+| **24h** | [Download CSV](https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/24h_html_categories_vi.csv) |
 
 ## 🔄 Cập nhật
 
@@ -60,7 +60,7 @@ Columns:
 ```python
 import pandas as pd
 
-BASE_URL = "https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/"
+BASE_URL = "https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/"
 
 files = {
     'tonghop': 'rss_feed_articles_v2.csv',
@@ -89,7 +89,7 @@ print(f"\n📊 Total: {len(df_all):,} articles")
 import pandas as pd
 from collections import Counter
 
-df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/rss_feed_articles_v2.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/rss_feed_articles_v2.csv")
 
 # Extract all keywords
 all_keywords = []
@@ -110,7 +110,7 @@ for keyword, count in keyword_counts.most_common(20):
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/rss_feed_articles_v2.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/rss_feed_articles_v2.csv")
 
 # Convert to datetime
 df['published_at'] = pd.to_datetime(df['published_at'])
@@ -135,7 +135,7 @@ plt.show()
 ```python
 import pandas as pd
 
-df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/rss_feed_articles_v2.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/rss_feed_articles_v2.csv")
 
 # Count by source
 source_counts = df['source.name'].value_counts()
@@ -151,7 +151,7 @@ for source, count in source_counts.items():
 ```python
 import pandas as pd
 
-df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/rss_feed_articles_v2.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/rss_feed_articles_v2.csv")
 
 # Tìm bài viết có chứa từ khóa "kinh tế"
 keyword = "kinh tế"
@@ -173,7 +173,7 @@ for idx, row in filtered.head(10).iterrows():
 import pandas as pd
 
 # Load data
-url = "https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl/rss_feed_articles_v2.csv"
+url = "https://raw.githubusercontent.com/leduchuy20/crawl_news/main/crawl_news/crawl/rss_feed_articles_v2.csv"
 df = pd.read_csv(url)
 
 # Quick stats
