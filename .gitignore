@@ -40,3 +40,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+crawl\laodong_html_articles_vi.csv
+crawl\rss_feed_articles_v2.csv
