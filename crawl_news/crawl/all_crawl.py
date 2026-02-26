@@ -3,7 +3,12 @@
 
 # # tong hop
 
-# In[1]:
+# In[9]:
+
+
+# %pip install -r D:\work\big_data_v2\crawl_news\requirements.txt
+
+# In[10]:
 
 
 #!/usr/bin/env python3
@@ -191,9 +196,9 @@ RSS_FEEDS = [
 ]
 
 # Crawl tất cả bài viết từ RSS feeds
-END_DATE = "2026-01-15"  # YYYY-MM-DD - chỉ lấy bài >= ngày này
+END_DATE = "2026-02-25"  # YYYY-MM-DD - chỉ lấy bài >= ngày này
 
-CSV_PATH = "rss_feed_articles_v2.csv"
+CSV_PATH = "rss_feed_articles_v2_from_25_2_2026.csv"
 
 # Có fetch full content từ URL gốc không (chậm hơn nhưng đầy đủ hơn)
 FETCH_FULL_CONTENT = True
@@ -661,13 +666,13 @@ def main():
 if __name__ == "__main__":
     main()
 
-# In[4]:
+# In[11]:
 
 
 # Kiểm tra kết quả sau khi crawl 137 RSS feeds
 import pandas as pd
 import os
-df = pd.read_csv("rss_feed_articles_v2.csv")
+df = pd.read_csv("rss_feed_articles_v2_from_25_2_2026.csv")
 
 print("=" * 80)
 print("KẾT QUẢ CRAWL VỚI 137 RSS FEEDS")
@@ -706,15 +711,15 @@ print(f"   - Độ dài trung bình content: {avg_content_length:,.0f} ký tự"
 print(f"   - Số bài có content: {df['content.text'].notna().sum():,}/{len(df):,}")
 
 print("\n" + "=" * 80)
-print(f"✅ HOÀN TẤT! File: rss_feed_articles_v2.csv")
-file_size_mb = os.path.getsize('rss_feed_articles_v2.csv') / 1024 / 1024
+print(f"✅ HOÀN TẤT! File: {CSV_PATH}")
+file_size_mb = os.path.getsize(CSV_PATH) / 1024 / 1024
 print(f"   Dung lượng: {file_size_mb:.2f} MB")
 print(f"   Nguồn tin: 12 tờ báo lớn nhất Việt Nam")
 print("=" * 80)
 
 # # lao dong
 
-# In[ ]:
+# In[12]:
 
 
 #!/usr/bin/env python3
@@ -757,10 +762,10 @@ CATEGORY_URLS = [
 ]
 
 # Crawl từ mới -> cũ cho tới khi bài có ngày < END_DATE
-END_DATE = "2026-01-15"  # YYYY-MM-DD - Lấy từ tháng 12/2025 để có nhiều dữ liệu hơn
+END_DATE = "2026-02-25"  # YYYY-MM-DD - Lấy từ tháng 12/2025 để có nhiều dữ liệu hơn
 MAX_PAGES_PER_CATEGORY = 100  # Mỗi category tối đa 100 trang
 
-CSV_PATH = "laodong_html_articles_vi.csv"
+CSV_PATH = "laodong_html_articles_vi_from_25_2_2026.csv"
 
 TIMEOUT = 25
 REQUEST_DELAY_BASE = 0.3
@@ -1175,7 +1180,7 @@ if __name__ == "__main__":
 
 # # znews
 
-# In[3]:
+# In[13]:
 
 
 #!/usr/bin/env python3
@@ -1211,10 +1216,10 @@ CATEGORY_URLS = [
 ]
 
 # Crawl từ mới -> cũ cho tới khi bài có ngày < END_DATE (theo giờ VN)
-END_DATE = "2026-01-15"  # YYYY-MM-DD
+END_DATE = "2026-02-25"  # YYYY-MM-DD
 MAX_PAGES_PER_CATEGORY = 2000  # safety stop
 
-CSV_PATH = "znews_html_categories_vi.csv"
+CSV_PATH = "znews_html_categories_vi_from_25_2_2026.csv"
 
 TIMEOUT = 25
 REQUEST_DELAY_BASE = 0.25
@@ -1664,7 +1669,7 @@ if __name__ == "__main__":
 
 # # 24h
 
-# In[ ]:
+# In[14]:
 
 
 #!/usr/bin/env python3
@@ -1705,9 +1710,9 @@ RSS_FEEDS = [
 
 # Crawl từ mới -> cũ cho tới khi bài có ngày < END_DATE (theo giờ VN)
 # Lưu ý: RSS của 24h chỉ cung cấp ~5 ngày data gần nhất
-END_DATE = "2026-01-15"  # YYYY-MM-DD (điều chỉnh phù hợp với RSS limitation)
+END_DATE = "2026-02-25"  # YYYY-MM-DD (điều chỉnh phù hợp với RSS limitation)
 
-CSV_PATH = "24h_html_categories_vi.csv"
+CSV_PATH = "24h_html_categories_vi_from_25_2_2026.csv"
 
 TIMEOUT = 25
 REQUEST_DELAY_BASE = 0.25
@@ -2115,7 +2120,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-# In[6]:
+# In[15]:
 
 
 import pandas as pd
@@ -2127,3 +2132,16 @@ print(f"  ✅ Tổng bài tonghop: {len(df_tonghop)}")
 print(f"  ✅ Tổng bài laodong: {len(df_laodong)}")
 print(f"  ✅ Tổng bài znews: {len(df_znews)}")
 print(f"  ✅ Tổng bài 24h: {len(df_24h)}")
+
+# In[16]:
+
+
+import pandas as pd
+df_tonghop =pd.read_csv("rss_feed_articles_v2_from_25_2_2026.csv")
+df_laodong = pd.read_csv("laodong_html_articles_vi_from_25_2_2026.csv")
+df_znews = pd.read_csv("znews_html_categories_vi_from_25_2_2026.csv")
+df_24h = pd.read_csv("24h_html_categories_vi_from_25_2_2026.csv")
+print(f"  ✅ Tổng bài tonghop_from_25_2_2026: {len(df_tonghop)}")
+print(f"  ✅ Tổng bài laodong_from_25_2_2026: {len(df_laodong)}")
+print(f"  ✅ Tổng bài znews_from_25_2_2026: {len(df_znews)}")
+print(f"  ✅ Tổng bài 24h_from_25_2_2026: {len(df_24h)}")
